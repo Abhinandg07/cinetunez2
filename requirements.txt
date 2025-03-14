@@ -57,7 +57,7 @@ tensorboard-data-server==0.7.2
 tensorflow==2.18.0
 tensorflow-io-gcs-filesystem==0.31.0
 termcolor==2.5.0
-thinc==8.3.4
+thinc==8.1.12  # Downgraded to a version compatible with blis<1.2.0
 tqdm==4.67.1
 typer==0.15.2
 typing_extensions==4.12.2
