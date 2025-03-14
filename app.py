@@ -9,7 +9,7 @@ app = Flask(__name__)
 nlp = spacy.load("en_core_web_sm")
 
 # Replace with your TMDB API key
-TMDB_API_KEY = "c4806ab642cc39cacdf6f2af37808653"
+TMDB_API_KEY = "c4806ab642cc39cacdf6f2af37808653Z"
 
 def extract_preferences(user_input):
     """
@@ -68,7 +68,3 @@ def chat():
         recommendations[genre] = get_movie_recommendations(genre)
     
     return jsonify({"response": "Here are some recommendations:", "recommendations": recommendations})
-
-# Remove the development server block
-# if __name__ == "__main__":
-#     app.run(debug=True)
