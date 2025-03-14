@@ -1,1 +1,1 @@
-web: python tuni.py
+web: gunicorn app:app
