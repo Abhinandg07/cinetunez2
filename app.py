@@ -85,14 +85,36 @@ def detect_intent(user_input):
     else:
         return None
 
+def get_casual_response(user_input):
+    """
+    Provides casual responses for simple greetings or questions.
+    """
+    user_input = user_input.lower()
+    
+    if any(word in user_input for word in ["hello", "hi", "hey"]):
+        return "Hello! How can I help you today?"
+    elif any(word in user_input for word in ["how are you", "how's it going"]):
+        return "I'm just a bot, but I'm doing great! How about you?"
+    elif any(word in user_input for word in ["thank you", "thanks"]):
+        return "You're welcome! Let me know if you need anything else."
+    elif any(word in user_input for word in ["bye", "goodbye"]):
+        return "Goodbye! Have a great day!"
+    else:
+        return None
+
 @app.route("/chat", methods=["POST"])
 def chat():
     """
-    Handles user input and returns recommendations based on intent.
+    Handles user input and returns recommendations or casual responses.
     """
     user_input = request.json.get("message")
     if not user_input:
         return jsonify({"response": "Please provide a message."})
+    
+    # Check for casual responses
+    casual_response = get_casual_response(user_input)
+    if casual_response:
+        return jsonify({"response": casual_response})
     
     # Detect user intent (music or movies)
     intent = detect_intent(user_input)
